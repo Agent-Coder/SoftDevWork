@@ -1,7 +1,12 @@
 import random
+
+#open the csv file
 file=open("occupations.csv","r")
+
+#read the file and split on new lines to get each line of the csv table as an element in the list
 job=file.read().split("\n")
-#opening, reading, and splitting the occupations thing on new lines
+
+#function to iterate through the list and split each line of the csv table on the right-most comma, separating the occupation and the percentage
 def splitCategory(l):
     #splits occupations and percentages
     for x in range(0,len(l)):
@@ -11,8 +16,8 @@ def splitCategory(l):
     return l
 job=splitCategory(job)
 
+#function for taking out the quotation marks in the occupation
 def takeOutQuotes(l):
-    #function for taking out quotes
     for x in range(0,len(l)):
         #loop through the list
         for i in range(0,len(l[x])-1):
@@ -21,27 +26,38 @@ def takeOutQuotes(l):
             #strip the quotes
     return l
 job=takeOutQuotes(job)
+
+#take out the first item(category titles) and last two items (total percentage and an extra empty list) 
 job=job[1:len(job)-2]
-#take out the first item(category titles) and last thing (total percentage) 
+
+#function to update each percentage to be a sum of all previous percentages
 def rangePercent(l):
-    #make 
-    l[0][1]=float(l[0][1])
     #make the first string percentage a float
+    l[0][1]=float(l[0][1])
     for x in range(1,len(l)):
+        #update each following percentage to be a float
         l[x][1]=round(float(l[x][1])+l[x-1][1],1)
     return l
 job=rangePercent(job)
 
+#function that will pick a random occupation based on the percentage
 def randomPick(l):
+    #generates a random percentage between 0 and 100%
     rand=random.randint(0,1000)
     rand=rand/10.0
+    
+    #counters for looping through the list
     counta=0
     countb=len(l)-1
+    
+    #the case where none of the occupations are selected
     if rand>99.8:
         return "unemployed"
+    #loop through the list both from the front and the back until the randomly generated percentage is within one of the sections
     while l[counta][1]<rand and l[countb][1]>rand:
         counta=counta+1
         countb=countb-1
+    #this is the case that the randomly generated percentage was exactly one of the percentages
     if  l[countb][1]==rand:
          return l[countb][0]
     if l[counta][1]>=rand:
