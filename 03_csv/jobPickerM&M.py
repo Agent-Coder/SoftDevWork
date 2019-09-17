@@ -37,6 +37,10 @@ def rangePercent(l):
     for x in range(1,len(l)):
         #update each following percentage to be a float
         l[x][1]=round(float(l[x][1])+l[x-1][1],1)
+        #make the current percentage the sum of the previous and current such that if the first item has 6.1 percent and second one has 10.2 %
+        #we will modify the second number to be 16.3 so that when we generate a random number we can use binary search to find which two items it is between
+        #if our random number is 5.3, since its less than the 6.1, the first item is returned
+        #if 11.4 is generated, second item is returned because it is greater than 6.1 but less than 16.3
     return l
 job=rangePercent(job)
 
@@ -55,15 +59,21 @@ def randomPick(l):
         return "unemployed"
     #loop through the list both from the front and the back until the randomly generated percentage is within one of the sections
     while l[counta][1]<rand and l[countb][1]>rand:
+        #loop through both front and back; front loop till find something greater, back loop till find something smaller
         counta=counta+1
+        #advance front loop
         countb=countb-1
+        #push back back loop
     #this is the case that the randomly generated percentage was exactly one of the percentages
     if  l[countb][1]==rand:
          return l[countb][0]
+        #deals with edge case for back loop
     if l[counta][1]>=rand:
         return l[counta][0]
+    #front loop returns whatever item it counted up to
     else:
         return l[countb+1][0]
+    #back loop returns the next item 
 print (randomPick(job))
 
 
