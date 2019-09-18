@@ -1,3 +1,7 @@
+#Michael Zhang and Amanda Zheng
+#SoftDev1 pd 1
+#K6 -- StI/O: Divine your Destiny!
+#2019-09-17 
 import random
 
 #open the csv file
