@@ -1,0 +1,9 @@
+body{
+  background-image: linear-gradient(to bottom right,aqua,#7EFFD5);
+}
+table, th, td{
+  border: 1px solid black;
+}
+#mytable td:hover {
+    background-color: #CCFFFF;
+}
