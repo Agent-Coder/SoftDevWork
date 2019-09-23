@@ -12,11 +12,13 @@ with open('occupations.csv', 'r') as csvFile:
     csvreader = csv.reader(csvFile)
     for row in csvreader:
         rows.append(row)
-dictionary = {}
+dictionary1 = {}
+dictionary2 = {}
 for item in rows[1: len( rows) - 1]:
     key = item[0]
     value = float( item[1])
-    dictionary[ key] = value
+    dictionary1[ key] = value
+    dictionary2[ key] = value
 r = []
 with open('link.csv', 'r') as cFile:
     csvread = csv.reader(cFile)
@@ -39,7 +41,7 @@ def rangePercent(l):
         #if our random number is 5.3, since its less than the 6.1, the first item is returned
         #if 11.4 is generated, second item is returned because it is greater than 6.1 but less than 16.3
     return l
-dictionary=rangePercent(dictionary)
+dictionary1=rangePercent(dictionary1)
 def randomPick(l):
     #generates a random percentage between 0 and 100%
     rand=random.randint(1,1000)
@@ -68,7 +70,7 @@ def randomPick(l):
     else:
         return di[countb+1]
     #back loop returns the next item
-coll=dictionary
+coll=dictionary2
 col=encyclopedia
 @app.route("/") # assign following fxn to run when route requested
 def hello_world():
@@ -80,8 +82,8 @@ def init():
     print("csving")
     return render_template(
         'work.html',
-        coll = dictionary,   #for the tablified occupations list
-        output = randomPick(coll), #for the lucky occupation
+        coll = dictionary2,   #for the tablified occupations list
+        output = randomPick(dictionary1), #for the lucky occupation
         col=encyclopedia
         )
 
