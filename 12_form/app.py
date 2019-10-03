@@ -3,11 +3,11 @@
 #K12 -- Echo Echo Echo
 #2019-09-26
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,session
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def origin():
     print(__name__ + "root")
     return render_template("form.html")
@@ -25,6 +25,9 @@ def auth():
     #print(request.args['user'])
     #print("***DIAG: request.headers***")
     #print(request.headers)
+    session['user']=request.args['user']
+    print(session.pop('user'))
+    print(request.cookies.get('user'))
     return render_template("submit.html",output=request.args.get('user'))
 
 if __name__ == "__main__":
