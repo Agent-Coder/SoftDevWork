@@ -31,20 +31,20 @@ def redirecting():
     Redirects to different errors if either or user  and password is wrong.
     If both are right, make session key and make the value the user
     """
-        user="CookieMonster"
-        pa="SeasameStreet"
-        if(request.args["username"]==user):
-            if (request.args["password"]==pa):
-                session['user']=user
+    user="CookieMonster"
+    pa="SeasameStreet"
+    if(request.args["username"]==user):
+        if (request.args["password"]==pa):
+            session['user']=user
                 #make session, name the key anything and value should be user
-                return redirect(url_for('welcome'))
-            else:
-                return redirect(url_for('error2'))
+            return redirect(url_for('welcome'))
         else:
-            if (request.args["password"]==pa):
-                return redirect(url_for('error1'))
-            else:
-                return redirect(url_for('error3'))
+            return redirect(url_for('error2'))
+    else:
+        if (request.args["password"]==pa):
+            return redirect(url_for('error1'))
+        else:
+            return redirect(url_for('error3'))
 
 @app.route("/welcome")
 def welcome():
