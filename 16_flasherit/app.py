@@ -10,6 +10,8 @@ app.secret_key = os.urandom(64)
 #random secret key(has to be outside here)
 @app.route("/", methods=['GET'])
 def homepage():
+    request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    ip=request.environ["REMOTE_ADDR"]
     return render_template("home.html")
 @app.route("/error1")
 def error1():
