@@ -1,0 +1,48 @@
+#copyright {
+    background-color: #505050;
+    font-family: Calibri;
+    text-align: right;
+    color:gray; 
+    font-size: 14pt;
+}
+
+.bodytext {
+    font-family: Arial; 
+    margin-left: 150px;
+}
+
+ul {
+    list-style-type: none; 
+    padding-left: 5px; 
+    margin-top:0px;
+}
+
+a:link {
+    text-decoration: none!important; 
+    color: gainsboro;
+}
+
+h3 {
+    margin-top:0px;
+}
+
+#leftcolumn {
+    float:left; 
+    font-family: Calibri; 
+    width: 150px;
+}
+
+h1 {
+    background-color: silver; 
+    color: white; 
+    text-align: center; 
+    font-family: Calibri;
+}
+
+body {
+    background-color: #585858;
+}
+
+#pagebackground {
+    background-color: dimgray;
+}
