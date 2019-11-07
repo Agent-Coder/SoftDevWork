@@ -34,7 +34,7 @@
 
   <body>
     <!--
-      Amanda Zheng and Jackie Lin
+      Amanda Zheng, Jackie Lin, and Hong Wei Chen
       SoftDev1 pd1
       K22 -- Who Does Frame Work For?
       2019-11-07
@@ -42,12 +42,58 @@
 
     <div class="card card-body bg-dark" style="text-align:center; color:white;">
       <h1 style="font-size:70px;">Team DJAJ</h1>
-      <p style="font-size:25px; color:#ddd; font-style:italic;">Amanda Zheng, Jackie Lin</p>
+      <p style="font-size:25px; color:#ddd; font-style:italic;">Amanda Zheng, Jackie Lin, and Hong Wei Chen</p>
     </div><br>
 
     <div class="container">
-      <h1>Bootstrap Typography</h1>
+      <h1> What is Bootstrap? </h1>
+      Bootstrap is a free front-end framework developer tool that contains libraries of compiled and minified CSS and JS source code
+      designed to make website building easier while minimizing file size and data usage.
+      The tool updates existing HTML and CSS features to make them more consistent,
+      and contains additional built-in features that can help format and style a page, granting more flexibility to the developer.
+      It is also designed so that websites are functional and responsive across different electronic devices, including mobile devices.
+      Bootstrap is great for developers who need a website up and running as soon as possible.
+      <br><br>
+      <h1> How do you use Bootstrap? </h1>
+      Developers can <a href="https://getbootstrap.com/docs/4.3/getting-started/download/">download</a> Bootstrap or use BootstrapCDN, the cached version, if Internet access is available.
+      Note that BootstrapCDN will always updated to the latest version,
+      while downloading the tool requires constant updating.<br><br>
+      To use BoostrapCDN, you need to link it to your HTML page.
+      You also need to insert required <code>meta</code> tags and Javascript plugins for the tool to work.
+      <br><br>
+      Your <code>head</code> tag should be as follows:
+      <br>
+      <div class="card card-body bg-light" style="font-family:monospace;">
+        &lt;head&gt;<br>
+        &emsp;&emsp;&lt;meta charset="utf-8"&gt;<br>
+        &emsp;&emsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;<br>
+        &emsp;&emsp;&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"&gt;<br>
+        &emsp;&emsp;&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"&gt;&lt;/script&gt;<br>
+        &emsp;&emsp;&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"&gt;&lt;/script&gt;<br>
+        &emsp;&emsp;&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"&gt;&lt;/script&gt;<br>
+        &lt;/head&gt;
+      </div>
+      <br><hr>
+      <h1>Bootstrap Features</h1>
+      Here are some features from the Bootstrap tool. For more in-depth documentation, click <a href="https://getbootstrap.com/docs/4.0/components/alerts/">here</a>.<br>
+      To view the source code, open the developer console.
+      <br><br>
+
+      <h2>Containers</h2>
+      Containers are Bootstrap's basic building block element that allows you to use the tool's built-in grid system,
+      which helps with formatting. You may choose the width of a container.
+
+      <div class="card card-body bg-light" style="font-family:monospace;">
+        &lt;div = "container"&gt;<br>
+        &emsp;&emsp;Insert code here...<br>
+        &lt;div&gt;
+      </div>
+
+      <br><hr>
+
+      <h2>Bootstrap Typography</h2>
       The Bootstrap default for text is different from the browser default for text. This default applies to all text inside HTML body.
+      <!-- the built-in "card" class attribute is similar to a container but is more flexible and customizable -->
         <div class="card card-body bg-light" style="font-family:monospace;">
           font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;<br>
           font-size: 14px;<br>
@@ -75,9 +121,10 @@
 
       <br><hr>
 
-      <h1>Navigation Bars</h1>
+      <h2>Navigation Bars</h2>
       Using bootstrap, you can also create navigation bars.<br><br>
-
+      <!-- the <nav> tag is a Bootstrap built-in tag that makes a navigation bar
+      The built-in "navbar" class attributes and its variations are used to make a navgiation bar -->
       <h4 class="text-secondary">Default Theme</h4>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -122,8 +169,9 @@
 
       <br><hr>
 
-      <h1>Dropdown Menus</h1>
+      <h2>Dropdown Menus</h2>
       You can easily create dropdown menus using Bootstrap as well.<br><br>
+      <!-- the class attribute "dropdown" assigned to the <div> tag is a built-in Boostrap feature that makes a dropdown menu -->
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
         <span class="caret"></span></button>
@@ -136,9 +184,11 @@
 
       <br><hr>
 
-      <h1>Grids</h1>
+      <h2>Grids</h2>
       Bootstrap also has a grid system (up to 12 columns), which could be useful for displaying information on a page.
+      <!-- class attributes "row" and "col" designate the rows and columns for a table or a grid, and you can specify the length of a column -->
       <div class="row" style="padding:5px;">
+        <!-- column with length 1 -->
         <div class="col-lg-1" style="background-color:lavender;">Span 1</div>
         <div class="col-lg-1" style="background-color:cornsilk;">Span 1</div>
         <div class="col-lg-1" style="background-color:lavender;">Span 1</div>
@@ -153,6 +203,7 @@
         <div class="col-lg-1" style="background-color:cornsilk;">Span 1</div>
       </div>
       <div class="row" style="padding:5px;">
+        <!-- column with length 2 -->
         <div class="col-lg-2" style="background-color:lavender;">Span 2</div>
         <div class="col-lg-2" style="background-color:cornsilk;">Span 2</div>
         <div class="col-lg-2" style="background-color:lavender;">Span 2</div>
@@ -172,8 +223,9 @@
 
       <br><hr>
 
-      <h1>Buttons</h1>
+      <h2>Buttons</h2>
       Bootstrap allows you to style buttons in the following manner.<br><br>
+      <!-- Using Boostrap, you can assign buttons with class attributes that are linked to a predetermined color and meaning -->
       <button type="button" class="btn btn-primary">Primary</button>
       <button type="button" class="btn btn-secondary">Secondary</button>
       <button type="button" class="btn btn-success">Success</button>
@@ -183,6 +235,8 @@
       <button type="button" class="btn btn-link">Link</button><br><br>
 
       You can add a button toolbar as well, which could be useful for pagination.<br>
+      <!-- role and aria-label are built-in attributes that designate the purpose of a <div> tag
+      The class "btn-toolbar" makes a button toolbar -->
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group mr-2" role="group" aria-label="First group">
           <button type="button" class="btn btn-light">1</button>
@@ -194,9 +248,12 @@
 
     <br><hr>
 
-    <h1>Image Carousel</h1>
+
+    <h2>Image Carousel</h2>
     You can display images inside an image carousel.<br><br>
+    <!-- the built-in "carousel slide" class attribute allows you to make a slideshow -->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <!-- content of a slideshow -->
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="https://wallpaperplay.com/walls/full/d/6/8/178663.jpg" class="d-block w-100" alt="...">
@@ -208,6 +265,7 @@
           <img src="http://getwallpapers.com/wallpaper/full/3/a/5/1296572-ocean-wallpapers-high-resolution-2560x1440-images.jpg" class="d-block w-100" alt="..." width="640px;" height="360px;">
         </div>
       </div>
+      <!-- You can add hyperlink tags that control the slideshow using "carousel-control" as a class attribute -->
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -220,12 +278,14 @@
 
     <br><hr>
 
-    <h1>Tables</h1>
-    Bootstrap also allows you to create responsive and aesthetic tables.<br><br>
+    <h2>Tables</h2>
+    Bootstrap also allows you to create responsive and aesthetic tables.If you zoom in, you can test the responsive scrolling feature.<br><br>
+    <!-- the responsive and hover feature for the table allows user to zoom in and scroll along the rows and columns and highlight them -->
     <div class="table-responsive">
       <table class="table table-hover">
       <thead>
         <tr>
+          <!-- defining column names -->
           <th scope="col">#</th>
           <th scope="col">First</th>
           <th scope="col">Last</th>
@@ -239,6 +299,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- inputting rows -->
         <tr height= "60px">
           <th scope="row">1</th>
           <td>This</td>
@@ -305,9 +366,12 @@
 
     <br><hr>
 
-    <h1>Lists</h1>
+    <h2>Lists</h2>
     List groups are a flexible and powerful component for displaying a series of content.<br><br>
+    <!-- using class attribute "list-group" you can create list groups -->
     <div class="list-group">
+      <!-- a keyword is assigned to each list to give it a meaning and color and demnonstrated before
+      The "badge" class attribute displays text in a small container/shape -->
       <a href="#" class="list-group-item list-group-item-action list-group-item-primary">This is a primary list group item <span class="badge badge-primary badge-pill">1</span></a>
       <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">This is a secondary list group item <span class="badge badge-primary badge-pill">53</span></a>
       <a href="#" class="list-group-item list-group-item-action list-group-item-success">This is a success list group item <span class="badge badge-primary badge-pill">13</span></a>
@@ -319,12 +383,14 @@
 
     <br><hr>
 
-    <h1>Inputs</h1>
+    <h2>Inputs</h2>
     Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs, custom selects, and custom file inputs.<br><br>
+    <!-- Bootstrap input groups allow you to create forms with more flexibility -->
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Options</label>
       </div>
+      <!-- select tag is similar to dropdown menu -->
       <select class="custom-select" id="inputGroupSelect01">
         <option selected>Choose...</option>
         <option value="1">One</option>
@@ -340,6 +406,7 @@
         <option value="2">Hello</option>
         <option value="3">What is up</option>
       </select>
+      <!-- use "append" to add to end of existing objects -->
       <div class="input-group-append">
         <label class="input-group-text" for="inputGroupSelect02">Options</label>
       </div>
@@ -358,6 +425,7 @@
     </div>
     <br>
     <div class="input-group mb-3">
+      <!-- form asking user to upload file -->
       <div class="custom-file">
         <input type="file" class="custom-file-input" id="inputGroupFile02">
         <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
@@ -366,6 +434,35 @@
         <span class="input-group-text" id="">Upload</span>
       </div>
     </div>
+    <br><br>
+
+    <p class="text-center">
+      <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">
+        Click Here!
+      </button>
+    </p>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Congratulations!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Congrats on reaching the end of our tutorial! Click "Back to the Top" to read it again or head over to Bootstrap to start styling your own webpage!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Congralutions for making it to the bottom of this very long HTML file! Read it again here: -->
+    <p class = "text-center"><a style = "text-align: center" class = "btn btn-link btn-sm" href = "#" role = "button">Back to top</a></p>
     </div>
     <br><br>
   </body>
