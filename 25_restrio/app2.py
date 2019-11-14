@@ -13,7 +13,7 @@ def root():
     response = u.read()
     data = json.loads(response)
     data=data['results']
-    return render_template("superhero.html", list=data)
+    return render_template("trivia.html", list=data)
 
 
 if __name__ == "__main__":
