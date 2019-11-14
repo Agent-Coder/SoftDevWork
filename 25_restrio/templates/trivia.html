@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Triva API</title>
+    <h1>TRIVIA!</h1>
+  </head>
+  <body>
+    {% for dict in list %}
+      {% for key in dict %}
+        {{ key }}: {{dict[key]}}
+        <br>
+      {% endfor %}
+      <br>
+    {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Itunes API</title>
+    <h1>{{name}}'s Songs</h1>
+  </head>
+  <body>
+    <ol>
+    {% for dict in list %}
+      <li>Song: {{dict['trackName']}} (${{dict['trackPrice']}})
+      <br>
+      Album: {{dict['collectionName']}} (${{dict['collectionPrice']}})
+      <br>
+      Genre: {{dict['primaryGenreName']}}
+      <br><br>
+      </li>
+    {% endfor %}
+    </ol>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Art API</title>
+    <h1>Title: {{title}}</h1>
+  </head>
+  <body>
+    <img src={{pic}} height="50%;" width="50%;">
+    <h4>Category: {{department}}<br>
+    Tags: {% for item in tags %}
+      {{item}},
+    {% endfor %}<br>
+    Excavation: {{place}}
+    Classification: {{classify}}<br>
+    Date of Object: {{date}}<br>
+    Material: {{medium}}<br>
+    Credit: {{credit}}<br>
+    </h4>
+  </body>
+</html>

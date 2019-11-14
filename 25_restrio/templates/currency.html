@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Currency API</title>
+    <h1>Currency: {{base}}</h1>
+  </head>
+  <body>
+    <h2>Exhange Rates:</h2> <br>
+    {% for key in exchange %}
+      {{key}}: ${{exchange[key]}}
+      <br>
+    {% endfor %}
+  </body>
+</html>

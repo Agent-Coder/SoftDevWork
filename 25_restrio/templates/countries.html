@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Country API</title>
+    <h1>{{name}}</h1>
+    <img src="{{flag}}">
+  </head>
+  <body>
+    <ul>
+      <li>Capital: {{capital}}</li>
+      <li>Poulation: {{population}}</li>
+      <li>Language: {{languages}}</li>
+      <li>Time zones: {% for item in timezones %} {{item}} {% endfor %}</li>
+      <li>Borders: {% for item in borders %} {{item}} {% endfor %}</li>
+      <li>Currency: {{currencies}}</li>
+      <li>Region: {{region}}</li>
+      <li>Sub Region: {{subregion}}</li>
+      <li>Area: {{area}}</li>
+      <li>Native Name: {{nativeName}}</li>
+      <li>Numeric Code: {{numericCode}}</li>
+    </ul>
+  </body>
+</html>
