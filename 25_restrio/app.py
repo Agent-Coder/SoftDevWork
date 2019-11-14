@@ -13,7 +13,7 @@ def root():
     response = u.read()
     data = json.loads(response)
     print(data['name'])
-    return render_template("spotify.html", name=data['name'],
+    return render_template("countries.html", name=data['name'],
                             capital=data['capital'],
                             population=data['population'],
                             languages=data['languages'][0]['name'],
