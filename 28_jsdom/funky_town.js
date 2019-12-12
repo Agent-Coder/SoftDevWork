@@ -4,10 +4,9 @@
 //12-11-2019
 const button = document.getElementById('b');
 button.addEventListener("click", () => getBoxes());
-if(document.getElementById("calculate").style.display=="display"){
-  const button2= document.getElementById('calculate');
-  button2.addEventListener("click", () => getFunction);
-};
+const button2= document.getElementById('calculate');
+button2.addEventListener("click", () => getFunction());
+
 var fact = function(n){
     if(n <= 1){
       return 1;
@@ -40,15 +39,21 @@ var getBoxes = function(){
   var chosen=funct.options[funct.selectedIndex].value;
   console.log(chosen);
   if (chosen=="fact"){
-    document.getElementById("box1").innerHTML="Calculate Factorial of: <input type=\"text\" name=\"box1\" value=5><br>";
+    document.getElementById("box1").innerHTML="Calculate Factorial of: ";
+    document.getElementById("b1").style.display = "block";
     //document.getElementById('calculate').addEventListener("click", getFunction);
   }else if(chosen=="fib"){
-    document.getElementById("box1").innerHTML="Find the kth number of Fibonacci number where k is: <input type=\"text\" name=\"box1\" value=5><br>";
+    document.getElementById("box1").innerHTML="Find the kth number of Fibonacci number where k is: ";
+    document.getElementById("b1").style.display = "block";
   }else if(chosen=="gcd"){
-    document.getElementById("box1").innerHTML="First number: <input type=\"text\" name=\"box1\" value=5><br>";
-    document.getElementById("box2").innerHTML="Second number: <input type=\"text\" name=\"box1\" value=10><br>";
+    document.getElementById("box1").innerHTML="First number: ";
+    document.getElementById("b1").style.display = "block";
+    document.getElementById("box2").innerHTML="Second number: ";
+    document.getElementById("b2").style.display = "block";
   }else{
     document.getElementById("box1").innerHTML="Give a List separated by commas: <input type=\"text\" name=\"box1\" value=\"Amanda,Yvgeniy,Mandy,Pratham\"><br>";
+    document.getElementById("b1").value = "a,b,c,d";
+    document.getElementById("b1").style.display = "block";
   }
   console.log(document.getElementById("calculate").style.display);
   document.getElementById("calculate").style.display = "block";
@@ -56,13 +61,15 @@ var getBoxes = function(){
 };
 var getFunction = function(){
   var funct=document.getElementById('select_method').options[document.getElementById('select_method').selectedIndex].value;
-  var ans1=document.getElementById("box1").value;
+  console.log(funct);
+  var ans1=document.getElementById("b1").text;
+  console.log(ans1);
   if (funct=="fact"){
     return document.getElementById("demo").innerHTML="Your answer: "+fact(ans1);
   }else if(funct=="fib"){
     return document.getElementById("demo").innerHTML="Your answer: "+fib(ans1);
   }else if(funct=="gcd"){
-    var ans2=document.getElementById("box2").value;
+    var ans2=document.getElementById("b2").value;
     return document.getElementById("demo").innerHTML="Your answer: "+gcd(ans1,ans2);
   }else if(funct=="selectRandom"){
     ans1=str.split(",");
