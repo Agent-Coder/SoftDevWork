@@ -3,13 +3,11 @@
 //K27 -- Sequential Progression
 //12-11-2019
 const button = document.getElementById('b');
-console.log("Button", button);
 button.addEventListener("click", () => getBoxes());
-if(document.getElementById("calculate").style.visibility=="visible"){
-  console.log("yeet");
-  document.getElementById('calculate').addEventListener("click", getFunction);
-}
-console.log("calculate", document.getElementById("calculate"));
+if(document.getElementById("calculate").style.display=="display"){
+  const button2= document.getElementById('calculate');
+  button2.addEventListener("click", () => getFunction);
+};
 var fact = function(n){
     if(n <= 1){
       return 1;
@@ -52,10 +50,9 @@ var getBoxes = function(){
   }else{
     document.getElementById("box1").innerHTML="Give a List separated by commas: <input type=\"text\" name=\"box1\" value=\"Amanda,Yvgeniy,Mandy,Pratham\"><br>";
   }
-  console.log(document.getElementById("calculate").style.visibility);
-  document.getElementById("calculate").style.visibility = "visible";
-  console.log(document.getElementById("calculate").style.visibility);
-  //document.getElementById('calculate').addEventListener("click", getFunction);
+  console.log(document.getElementById("calculate").style.display);
+  document.getElementById("calculate").style.display = "block";
+  console.log(document.getElementById("calculate").style.display);
 };
 var getFunction = function(){
   var funct=document.getElementById('select_method').options[document.getElementById('select_method').selectedIndex].value;
