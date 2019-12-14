@@ -5,11 +5,11 @@
 
 var changeHeading = function(e) {
   var h = document.getElementById("h");
-  h.innerHTML = e.srcElement.innerHTML;
+  h.innerHTML = this.name;
 };
 
 var removeItem = function(e) {
-  e.srcElement.remove();
+  this.remove();
 };
 
 //helper function for adding event listeners to a list item
@@ -26,12 +26,15 @@ var lis = document.getElementsByTagName("li");
 //console.log(lis);
 
 for (var i=0; i < lis.length; i++){
+  lis[i].name=lis[i].innerHTML;
   addEvents(lis[i]);
 }
 
 var addItem = function(e) {
   var list = document.getElementById("thelist");
   var item = document.createElement("li");
+  //console.log(this);
+  item.name = "WORD";
   item.innerHTML = "WORD";
   addEvents(item);
   list.appendChild(item);
