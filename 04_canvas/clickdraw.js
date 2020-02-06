@@ -40,7 +40,7 @@ c.addEventListener('mousedown', e => {
   var x = e.pageX - c.offsetLeft;
   var y = e.pageY - c.offsetTop;
   if (mode == 1){
-    ctx.fillRect(x-10, y-10, 20, 20);
+    ctx.fillRect(x, y, 20, 20);
   }
   else {
     ctx.beginPath();
