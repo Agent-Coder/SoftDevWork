@@ -1,6 +1,6 @@
 //Jackie Lin and Amanda Zheng (Team DJAJ)
 //SoftDev1 pd1
-//K#03 -- Canvas
+//K#04 -- Canvas
 //2020-02-05
 
 var c = document.getElementById("slate");
