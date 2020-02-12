@@ -9,6 +9,8 @@ var lastx;
 var lasty;
 var clear = function(){
   ctx.clearRect(0, 0, c.width, c.height);
+  lastx=null;
+  lasty=null;
   //console.log("clear");
 }
 
