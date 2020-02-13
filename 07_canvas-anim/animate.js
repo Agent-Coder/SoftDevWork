@@ -1,4 +1,4 @@
-//Devin Lin and Amanda Zheng (Team )
+//Devin Lin and Amanda Zheng (Team Fridge Ninjas)
 //SoftDev1 pd1
 //K#07 -- Canvas-anim
 //2020-02-12
