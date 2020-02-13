@@ -9,7 +9,6 @@ var r=10;
 var id;
 var expand=true;
 var animating=false;
-var move=false;
 var img=new Image();
 var x;
 var y;
@@ -27,15 +26,12 @@ var cancel = function(){
   if (id!=null){
     window.cancelAnimationFrame(id)
     animating=false;
-    move=false;
-
   }//console.log(mode);
 }
 
 
 
 var animate = function(){
-  move=false;
   animating=true;
   if(expand){
     r+=5
@@ -68,36 +64,32 @@ var draw = function(){
 }
 
 var movie = function(){
-  if(!move){
-    ctx.clearRect(0,0,c.width,c.height);
-    cancel();
-    console.log("hi");
-    x=Math.floor(Math.random()*590);
-    y=Math.floor(Math.random()*590);
-    dvd();
-  }
+  ctx.clearRect(0,0,c.width,c.height);
+  cancel();
+  x=Math.floor(Math.random()*400)+100;
+  y=Math.floor(Math.random()*400)+100;
+  dvd();
 }
 
 var dvd = function(){
-  move=true;
   animating=false;
   ctx.clearRect(0,0,c.width,c.height);
   ctx.beginPath();
-  if(y+dy<-30){
+  if(y+dy<0){
     dy=Math.abs(dy)
   }
-  if(y+dy>530){
+  if(y+dy>525){
     dy=-1*Math.abs(dy)
   }
   if(x+dx<0){
     dx=Math.abs(dx)
   }
-  if(x+dx>500){
+  if(x+dx>485){
     dx=-1*Math.abs(dx)
   }
   x+=dx;
   y+=dy;
-  ctx.drawImage(img,x,y,100,100);
+  ctx.drawImage(img,x,y,125,75);
   ctx.closePath();
   id=requestAnimationFrame(dvd);
 }
