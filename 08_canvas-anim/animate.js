@@ -1,4 +1,4 @@
-//Devin Lin and Amanda Zheng (Team )
+//Devin Lin and Amanda Zheng (Team Fridge Ninjas)
 //SoftDev1 pd1
 //K#07 -- Canvas-anim
 //2020-02-12
@@ -13,9 +13,9 @@ var move=false;
 var img=new Image();
 var x;
 var y;
-var dx=10;
-var dy=10;
-img.src = 'dvd.jpg'
+var dx=5;
+var dy=-5;
+img.src = 'dvd.png'
 
 ctx.beginPath();
 ctx.arc(300, 300, r, 0, 2 * Math.PI);
@@ -27,12 +27,15 @@ var cancel = function(){
   if (id!=null){
     window.cancelAnimationFrame(id)
     animating=false;
+    move=false;
+
   }//console.log(mode);
 }
 
 
 
 var animate = function(){
+  move=false;
   animating=true;
   if(expand){
     r+=5
@@ -58,16 +61,17 @@ var animate = function(){
 
 var draw = function(){
   if(!animating){
-    ctx.clearRect(0,0,ctx.width,ctx.height);
+    cancel();
+    ctx.clearRect(0,0,c.width,c.height);
     animate();
   }
 }
 
 var movie = function(){
   if(!move){
+    ctx.clearRect(0,0,c.width,c.height);
     cancel();
     console.log("hi");
-    ctx.clearRect(0,0,ctx.width,ctx.height);
     x=Math.floor(Math.random()*590);
     y=Math.floor(Math.random()*590);
     dvd();
@@ -75,15 +79,27 @@ var movie = function(){
 }
 
 var dvd = function(){
-  ctx.drawImage(img,x,y);
+  move=true;
+  animating=false;
+  ctx.clearRect(0,0,c.width,c.height);
   ctx.beginPath();
-  if( x<10|| y<10 || x>590||y>590 ){
-    dx=-dx;
-    dy=-dy;
+  if(y+dy<-30){
+    dy=Math.abs(dy)
+  }
+  if(y+dy>530){
+    dy=-1*Math.abs(dy)
+  }
+  if(x+dx<0){
+    dx=Math.abs(dx)
+  }
+  if(x+dx>500){
+    dx=-1*Math.abs(dx)
   }
   x+=dx;
   y+=dy;
-  ctx.drawImage(img,x,y);
+  ctx.drawImage(img,x,y,100,100);
+  ctx.closePath();
+  id=requestAnimationFrame(dvd);
 }
   //console.log(mode);
 var stop=document.getElementById("stop");
