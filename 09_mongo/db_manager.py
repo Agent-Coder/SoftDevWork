@@ -8,9 +8,9 @@ from bson.json_util import loads
 from pymongo import MongoClient
 
 client = MongoClient("localhost",27017)
-db = client.restaurants
-db.food.drop()
-food=db.food
+food = client.restaurants.food
+food.drop()
+
 file = open("dataset.json", "r")
 doc = file.readlines()
 for x in doc:
@@ -18,20 +18,20 @@ for x in doc:
 
 
 def findBorough(bor):
-    return db.food.find( { "borough": bor },{ "name": 1,"_id":0} )
+    return food.find( { "borough": bor },{ "name": 1,"_id":0} )
 
 def findzip(zipc):
-    return db.food.find( { "address.zipcode": zipc },{ "name": 1,"_id":0} )
+    return food.find( { "address.zipcode": zipc },{ "name": 1,"_id":0} )
 
 def findzipgrade(zipc,grade):
-    return db.food.find( { "address.zipcode": zipc, "grades.grade": grade },{ "name": 1, "_id":0} )
+    return food.find( { "address.zipcode": zipc, "grades.grade": grade },{ "name": 1, "_id":0} )
 
 def findzipthresh(zipc,score):
-    return db.food.find( { "address.zipcode": zipc, "grades.score": {"$lt":score}},{ "name": 1,"_id":0} )
+    return food.find( { "address.zipcode": zipc, "grades.score": {"$lt":score}},{ "name": 1,"_id":0} )
 
 def findsubName(name):
     name=".*"+name+".*"
-    return db.food.find({"name": {"$regex":name,"$options":"i"}},{"name":1,"_id":0})
+    return food.find({"name": {"$regex":name,"$options":"i"}},{"name":1,"_id":0})
 
 
 
