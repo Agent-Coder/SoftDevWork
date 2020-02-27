@@ -9,13 +9,13 @@ from pymongo import MongoClient
 
 client = MongoClient("localhost",27017)
 db = client.restaurants
-#db.restaurants.drop()
 db.food.drop()
 food=db.food
 file = open("dataset.json", "r")
 doc = file.readlines()
-for line in doc:
-    food.insert_one(loads(line))
+for x in doc:
+    food.insert_one(loads(x))
+
 
 def findBorough(bor):
     return db.food.find( { "borough": bor },{ "name": 1,"_id":0} )
@@ -39,16 +39,16 @@ print("\nPrinting results for Restaurants in Queens\n")
 
 for result in findBorough("Queens"):
     if(result["name"]==""):
-        print("No Name Found")
+       print("No Name Found")
     else:
-        print(result["name"])
+       print(result["name"])
 
 print("\nprinting results for Restaurants with zipcode 11377\n")
 for result in findzip("11377"):
     if (result["name"]==""):
         print("No Name Found")
     else:
-        print(result["name"])
+       print(result["name"])
 
 
 print("\nprinting results for Restaurants with zipcode 11377 and grade B\n")
@@ -57,7 +57,7 @@ for result in findzipgrade("11377","B"):
     if (result["name"]==""):
         print("No Name Found")
     else:   
-        print (result["name"])
+      print (result["name"])
 
 print("\nprinting results for Restaurants with zipcode 11377 and score of less than 50")
 
@@ -65,9 +65,9 @@ for result in findzipthresh("11377",50):
     if(result["name"]==""):
         print("No Name Found")
     else:
-        print(result["name"])
+      print(result["name"])
 
 print("\nprinting results for Restaurants with the word pizza in its name\n")
 for result in findsubName("pizza"):
-    print(result["name"])
+   print(result["name"])
 
