@@ -7,34 +7,67 @@
 from bson.json_util import loads
 from pymongo import MongoClient
 
-client = MongoClient()
-db = client.test
+client = MongoClient("localhost",27017)
+db = client.restaurants
 #db.restaurants.drop()
-restaurants = db.restaurants
+db.food.drop()
+food=db.food
 file = open("dataset.json", "r")
-content = file.readlines()
-for line in content:
-    restaurants.insert_one(loads(line))
-#for item in restaurants.find({}):
-#    print(item)
-
-#file = open("dataset.json", "r")
-#doc=file.readlines()
-#for line in doc:
-
-#doc=doc[1:len(doc)-1]
-#line=str(file.readline())
-    #result=restaurants.insert_one(loads(line))
-
+doc = file.readlines()
+for line in doc:
+    food.insert_one(loads(line))
 
 def findBorough(bor):
-    return db.restaurants.inventory.find( { "borough": bor },{_id: 0, "name": 1,} )
+    return db.food.find( { "borough": bor },{ "name": 1,"_id":0} )
 
-def findzip(zip):
-    return db.restaurants.inventory.find( { "address.zipcode": zip },{_id: 0, "name": 1,} )
+def findzip(zipc):
+    return db.food.find( { "address.zipcode": zipc },{ "name": 1,"_id":0} )
 
-def findzipgrade(zip,grade):
-    return db.restaurants.inventory.find( { "address.zipcode": zip, "grades.grade": grade },{_id: 0, "name": 1,} )
+def findzipgrade(zipc,grade):
+    return db.food.find( { "address.zipcode": zipc, "grades.grade": grade },{ "name": 1, "_id":0} )
 
-def findzipthresh(zip,score):
-    return db.restaurants.inventory.find( { "address.zipcode": zip, "grades.score": {"$lt":score}},{_id: 0, "name": 1,} )
+def findzipthresh(zipc,score):
+    return db.food.find( { "address.zipcode": zipc, "grades.score": {"$lt":score}},{ "name": 1,"_id":0} )
+
+def findsubName(name):
+    name=".*"+name+".*"
+    return db.food.find({"name": {"$regex":name,"$options":"i"}},{"name":1,"_id":0})
+
+
+
+print("\nPrinting results for Restaurants in Queens\n")
+
+for result in findBorough("Queens"):
+    if(result["name"]==""):
+        print("No Name Found")
+    else:
+        print(result["name"])
+
+print("\nprinting results for Restaurants with zipcode 11377\n")
+for result in findzip("11377"):
+    if (result["name"]==""):
+        print("No Name Found")
+    else:
+        print(result["name"])
+
+
+print("\nprinting results for Restaurants with zipcode 11377 and grade B\n")
+
+for result in findzipgrade("11377","B"):
+    if (result["name"]==""):
+        print("No Name Found")
+    else:   
+        print (result["name"])
+
+print("\nprinting results for Restaurants with zipcode 11377 and score of less than 50")
+
+for result in findzipthresh("11377",50):
+    if(result["name"]==""):
+        print("No Name Found")
+    else:
+        print(result["name"])
+
+print("\nprinting results for Restaurants with the word pizza in its name\n")
+for result in findsubName("pizza"):
+    print(result["name"])
+
