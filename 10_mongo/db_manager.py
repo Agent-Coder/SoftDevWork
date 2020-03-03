@@ -34,7 +34,7 @@ def questionWorth(q):
 
 
 def price(p):
-    p = f"${p}"
+    p = "$"+str(p)
     return quiz.find({"value": p}, {"question": 1, "_id": 0})
 
 
@@ -43,7 +43,7 @@ def category(c):
 
 
 def answer(q):
-    return quiz.find({"question": f"'{q}'"}, {"answer": 1, "_id": 0})
+    return quiz.find({"question": q}, {"answer": 1, "_id": 0})
 
 
 def doubleJeopardy():
