@@ -6,14 +6,15 @@
 
 from bson.json_util import loads
 from pymongo import MongoClient
-
+import json
 client = MongoClient("localhost",27017)
 quiz = client.jeopardy.quiz
 
 file = open("teamname.json", "r")
-doc = file.readlines()
-for x in doc:
-    quiz.insert_one(loads(x))
+doc = json.load(file)
+print(doc[0])
+#for line in doc:
+quiz.insert_one(doc[0])
 
 def findTopic(q):
     return quiz.find( { "question": q },{ "category": 1,"_id":0} )

@@ -13,6 +13,7 @@ food.drop()
 
 file = open("dataset.json", "r")
 doc = file.readlines()
+print(doc[0])
 for x in doc:
     food.insert_one(loads(x))
 
