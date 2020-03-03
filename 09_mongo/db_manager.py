@@ -71,4 +71,3 @@ for result in findzipthresh("11377",50):
 print("\nprinting results for Restaurants with the word pizza in its name\n")
 for result in findsubName("pizza"):
    print(result["name"])
-
