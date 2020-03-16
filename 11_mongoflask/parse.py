@@ -5,7 +5,7 @@ doc=doc.split("},")
 for x in doc:
     x=x+"}"
     x=x.split("\n")
-    s=" "
+    s=""
     s=s.join(x)
     s=s.strip(" ")
     s=s.strip("{")
