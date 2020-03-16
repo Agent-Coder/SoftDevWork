@@ -14,12 +14,40 @@ doc = file.readlines()
 for x in doc:
     anime.insert_one(loads(x))
 
-def findAnime(a):
-    return anime.find( { "status": a },{ "name": 1,"_id":0} )
+def findStatus(stat):
+    return anime.find( { "status": stat })
 
-for result in findAnime("FINISHED"):
-   print(result["title"])
+def findTitle(name):
+    name=".*"+name+".*"
+    return anime.find({"title": {"$regex":name,"$options":"i"}})
+def findEp(num):
+    return anime.find( { "episodes": {"$lte":num}})
+def findType(type):
+    return anime.find({"type":type})
 
+for result in findStatus("CURRENTLY"):
+    if (result["title"]==""):
+        print("No Name Found")
+    else:
+      print (result["title"])
+
+for result in findTitle("girl"):
+    if (result["title"]==""):
+        print("No Name Found")
+    else:
+      print (result["title"])
+
+for result in findEp(20):
+    if (result["title"]==""):
+        print("No Name Found")
+    else:
+      print (result["title"])
+
+for result in findType("OVA"):
+    if (result["title"]==""):
+        print("No Name Found")
+    else:
+      print (result["title"])
 app = Flask(__name__)
 
 if __name__ == "__main__":

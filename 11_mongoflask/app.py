@@ -46,6 +46,7 @@ def gallery():
         pic.append(x["picture"])
     render_template("gallery.html",titles=all,pic=pic)
 
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
