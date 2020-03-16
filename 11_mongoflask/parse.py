@@ -7,6 +7,11 @@ for x in doc:
     x=x.split("\n")
     s=" "
     s=s.join(x)
+    s=s.strip(" ")
+    s=s.strip("{")
+    s=s.strip("}")
+    s=s.strip(" ")
+    s="{"+s+"}"
     s+="\n"
     f.write(s)
 f.close()
