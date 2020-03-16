@@ -9,7 +9,7 @@ import json
 client = MongoClient("localhost", 27017)
 anime = client.weeb.anime
 anime.drop()
-file = open("anime-offline-database.json", "r")
+file = open("anime.json", "r")
 doc = json.readlines()
 for x in doc:
     anime.insert_one(loads(x))
