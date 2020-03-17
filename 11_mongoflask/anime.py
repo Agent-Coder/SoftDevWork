@@ -67,58 +67,6 @@ def findType(type):
 def findRand(num):
     return anime.aggregate([{ "$sample": { "size": num }}])
 
-
-t=findType("OVA")
-s=findStatus("CURRENTLY")
-e=findEp(0,0)
-h=findTitle("")
-loop=[]
-if(len(t)<len(s) and len(t)<len(e) and len(t)<len(h)):
-    loop=t
-elif(len(s)<len(t) and len(s)<len(e) and len(s)<len(h)):
-    loop=s
-elif(len(e)<len(s) and len(e)<len(t) and len(e)<len(h)):
-    loop=e
-else:
-    loop=h
-results = []
-count = 0
-for x in loop:
-    if (x in s) and (x in t) and (x in e) and (x in h):
-        results.append(x)
-        count+=1
-    if count>50:
-        break
-#for result in findStatus("CURRENTLY"):
-    #if (result["title"]==""):
-      #print("No Name Found")
-    #else:
-      #print (result["title"])
-
-#for result in findTitle("girl"):
-    #if (result["title"]==""):
-      #print("No Name Found")
-    #else:
-      #print (result["title"])
-
-#for result in findEp(20):
-    #if (result["title"]==""):
-      #print("No Name Found")
-    #else:
-      #print (result["title"])
-
-#for result in findType("OVA"):
-    #if (result["title"]==""):
-      #print("No Name Found")
-    #else:
-      #print (result["title"])
-
-#for result in findRand(10):
-   #if (result["title"]==""):
-     #print("No Name Found")
-   #else:
-     #print (result["title"])
-
 if __name__ == "__main__":
     app.debug = True
     #app.run()
