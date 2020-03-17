@@ -1,4 +1,4 @@
-#Amanda Zheng, Tiffany Cao, Team Blank
+#Amanda Zheng, Tiffany Cao, Team IWANNADIE 
 #K11 -- Ay Mon Go Git It From Yer Flask
 #2020-03-05
 import os
@@ -32,7 +32,7 @@ def start():
        flash("Please enter search queries.")
        return redirect(url_for('form'))
     search = "None"
-    type = "None"
+    type="None"
     status = "None"
     episodes = "None"
     if request.args.get('findstuff'): search = request.args.get('findstuff')
@@ -55,24 +55,26 @@ def start():
     title=request.args.get("findstuff")
     t=anime.findType(types)
     s=anime.findStatus(statuses)
+    results=[]
     e=anime.findEp(ep,mode)
     h=anime.findTitle(title)
     loop=[]
-    if(len(t)<len(s) and len(t)<len(e) and len(t)<len(h)):
+    #results=[]
+    #results.append(int(ep))
+    if(len(t)<=len(e) and len(t)<=len(h) and len(t)<=len(s)):
         loop=t
-    elif(len(s)<len(t) and len(s)<len(e) and len(s)<len(h)):
+    elif(len(s)<=len(t) and len(s)<=len(e) and len(s)<=len(h)):
         loop=s
-    elif(len(e)<len(s) and len(e)<len(t) and len(e)<len(h)):
+    elif(len(e)<=len(t) and len(e)<=len(h) and len(e)<=len(s)):
         loop=e
     else:
         loop=h
-    results = []
     count = 0
     for x in loop:
-        if (x in s) and (x in t) and (x in e) and (x in h):
+        if (x in t) and (x in h) and (x in s) and (x in e):
             results.append(x)
             count+=1
-        if count>50:
+        if count==50:
             break
     return render_template("results.html", query = True, rand = False, search = search, type = type, status = status, episodes = episodes, results = results)
 
@@ -91,4 +93,4 @@ def error():
 if __name__ == "__main__":
     app.debug = True
     anime.create()
-    app.run()
+    app.run(host='0.0.0.0')

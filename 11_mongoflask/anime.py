@@ -21,52 +21,47 @@ def create():
 #create()
 
 def findStatus(stat):
-    if stat==0:
-        result= anime.find({})
-    else:
-        result= anime.find({ "status": stat })
+    result= anime.find({})
+    if stat!="NONE" and stat!=0 and stat!="0":
+        result= anime.find({ "status": stat },{"title":1,"_id":0})
     answer=[]
     for x in result:
-        answer.append(x["title"].encode('utf8'))
+        answer.append(x["title"])
     return answer
 
 def findTitle(name):
-    if name=="":
-        result= anime.find({})
-    else:
+    result= anime.find({})
+    if name!="" and name!="0":
         name=".*"+name+".*"
         result= anime.find({ "title": { "$regex": name, "$options" : "i" }})
     answer=[]
     for x in result:
-        answer.append(x['title'].encode('utf8'))
+        answer.append(x['title'])
     return answer
 
 def findEp(num,mode):
-    if mode==0 or num == "":
-        result= anime.find({})
+    result= anime.find({})
     if(mode=="Less"):
-        result= anime.find({ "episodes": { "$lte": num }})
-    else:
-        result= anime.find({ "episodes": { "$gte": num }})
+        #num=int(num)
+        result= anime.find({ "episodes": { "$lte": n }})
+    elif(mode=="Greater"):
+        #num=int(num)
+        result= anime.find({ "episodes": { "$gte": n }})
     answer=[]
     for x in result:
-        answer.append(x['title'].encode('utf8'))
+        answer.append(x['title'])
     return answer
 
 
-def findType(type):
-    if type==0:
-        result=anime.find({})
-    else:
-        result= anime.find({ "type": type })
+def findType(t):
+    result=anime.find({})
+    if (t!="0" and t!=0):
+        result= anime.find({ "type": t },{"title":1,"_id":0}) 
     answer=[]
     for x in result:
-        answer.append(x['title'].encode('utf8'))
+        answer.append(x['title'])
     return answer
 
 def findRand(num):
     return anime.aggregate([{ "$sample": { "size": num }}])
 
-if __name__ == "__main__":
-    app.debug = True
-    #app.run()
