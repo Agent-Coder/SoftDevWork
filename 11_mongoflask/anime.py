@@ -22,36 +22,80 @@ def create():
 
 def findStatus(stat):
     if stat==0:
-        return anime.find({})
-    return anime.find({ "status": stat })
+        result= anime.find({})
+    else:
+        result= anime.find({ "status": stat })
+    answer=[]
+    for x in result:
+        answer.append(["title"])
+    return answer
 
 def findTitle(name):
     if name=="":
-        return anime.find({})
-    name=".*"+name+".*"
-    #print(name)
-    #print(anime.find({ "title": { "$regex": name, "$options": "i" }}).count())
-    return anime.find({ "title": { "$regex": name, "$options" : "i" }})
+        result= anime.find({})
+    else:
+        name=".*"+name+".*"
+        result= anime.find({ "title": { "$regex": name, "$options" : "i" }})
+    answer=[]
+    for x in result:
+        answer.append(["title"])
+    return answer
 
 def findEp(num,mode):
-    if mode==0:
-        return anime.find({})
+    if mode==0 or num == "":
+        result= anime.find({})
     if(mode=="Less"):
-        return anime.find({ "episodes": { "$lte": num }})
+        result= anime.find({ "episodes": { "$lte": num }})
     else:
-        return anime.find({ "episodes": { "$gte": num }})
+        result= anime.find({ "episodes": { "$gte": num }})
+    answer=[]
+    for x in result:
+        answer.append(["title"])
+    return answer
+
 
 def findType(type):
     if type==0:
-        return anime.find({})
-    #print(type)
-    #print(anime.find({ "type": type }).count())
-    return anime.find({ "type": type })
+        result=anime.find({})
+    else:
+        result= anime.find({ "type": type })
+    answer=[]
+    for x in result:
+        answer.append(["title"])
+    return answer
 
 def findRand(num):
     return anime.aggregate([{ "$sample": { "size": num }}])
 
 
+
+t=anime.findType("OVA")
+s=anime.findStatus("CURRENTLY")
+e=anime.findEp(0,0)
+h=anime.findTitle("")
+loop=[]
+lengthT = []
+if(len(t)<len(s) and len(t)<len(e) and len(t)<len(h)):
+    loop=t
+elif(len(s)<len(t) and len(s)<len(e) and len(s)<len(h)):
+    loop=s
+elif(len(e)<len(s) and len(e)<len(t) and len(e)<len(h)):
+    loop=e
+else:
+    loop=h
+results = []
+count = 0
+for x in loop:
+    count+=1
+    if (x in s) and (x in t) and (x in e) and (x in h):
+        results.append(x)
+    if count>50:
+        break
+results.append(len(lengthT))
+results.append(len(lengthE))
+results.append(len(lengthS))
+results.append(len(lengthH))
+print(results)
 #for result in findStatus("CURRENTLY"):
     #if (result["title"]==""):
       #print("No Name Found")
