@@ -27,7 +27,7 @@ def findStatus(stat):
         result= anime.find({ "status": stat })
     answer=[]
     for x in result:
-        answer.append(["title"])
+        answer.append(x["title"].encode('utf8'))
     return answer
 
 def findTitle(name):
@@ -38,7 +38,7 @@ def findTitle(name):
         result= anime.find({ "title": { "$regex": name, "$options" : "i" }})
     answer=[]
     for x in result:
-        answer.append(["title"])
+        answer.append(x['title'].encode('utf8'))
     return answer
 
 def findEp(num,mode):
@@ -50,7 +50,7 @@ def findEp(num,mode):
         result= anime.find({ "episodes": { "$gte": num }})
     answer=[]
     for x in result:
-        answer.append(["title"])
+        answer.append(x['title'].encode('utf8'))
     return answer
 
 
@@ -61,20 +61,18 @@ def findType(type):
         result= anime.find({ "type": type })
     answer=[]
     for x in result:
-        answer.append(["title"])
+        answer.append(x['title'].encode('utf8'))
     return answer
 
 def findRand(num):
     return anime.aggregate([{ "$sample": { "size": num }}])
 
 
-
-t=anime.findType("OVA")
-s=anime.findStatus("CURRENTLY")
-e=anime.findEp(0,0)
-h=anime.findTitle("")
+t=findType("OVA")
+s=findStatus("CURRENTLY")
+e=findEp(0,0)
+h=findTitle("")
 loop=[]
-lengthT = []
 if(len(t)<len(s) and len(t)<len(e) and len(t)<len(h)):
     loop=t
 elif(len(s)<len(t) and len(s)<len(e) and len(s)<len(h)):
@@ -86,16 +84,11 @@ else:
 results = []
 count = 0
 for x in loop:
-    count+=1
     if (x in s) and (x in t) and (x in e) and (x in h):
         results.append(x)
+        count+=1
     if count>50:
         break
-results.append(len(lengthT))
-results.append(len(lengthE))
-results.append(len(lengthS))
-results.append(len(lengthH))
-print(results)
 #for result in findStatus("CURRENTLY"):
     #if (result["title"]==""):
       #print("No Name Found")
