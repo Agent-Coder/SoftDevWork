@@ -3,7 +3,7 @@
 #2020-03-05
 import os
 from flask import Flask, render_template, request, session, redirect, flash, url_for
-import anime
+#import anime
 
 app = Flask(__name__)
 app.secret_key = "help"
@@ -23,7 +23,7 @@ def start():
    #   flash("Here " + request.form.get('supporttype'))
    #   return redirect(url_for('error'))
     if request.form.get('random') is not None or request.form.get('refresh') is not None:
-      random = anime.findRand(10)
+      #random = anime.findRand(10)
       return render_template("results.html", query = False, rand = True, random = random)
     # print("1" + request.args.get('findstuff'))
     # print(request.args.get('type'))
@@ -53,15 +53,15 @@ def start():
             return redirect(url_for('form'))
         else:
             episodes += " " + request.args.get('eps') + " episode(s)"
-    type=request.form["type"]
-    status=request.form["status"]
-    mode=request.form["episodes"]
-    ep=request.form["eps"]
-    title=request.form["findstuff"]
-    t=anime.findType(type)
-    s=anime.findStatus(status)
-    e=anime.findEp(ep,mode)
-    h=anime.findTitle(title)
+    type=request.args.get('type')
+    status=request.args.get('status')
+    mode=request.args.get('episodes')
+    ep=request.args.get('eps')
+    title=request.args.get('findstuff')
+    t=findType(type)
+    s=findStatus(status)
+    e=findEp(ep,mode)
+    h=findTitle(title)
     loop=[]
     if(len(s)<len(t) and len(s)<len(e) and len(s)<len(h)):
         loop=s
@@ -93,7 +93,39 @@ def one():
 def error():
     return render_template("error.html")
 
+
+def findStatus(stat):
+    if stat==0:
+        list=["happy","sad","angry","aaidijfoaidf","asjdfaoisjf"]
+        return list
+    list=["asdkfja","asoidfjas","asdijfaij"]
+    return list
+
+def findTitle(name):
+    if name=="":
+        list=["happy","sad","angry","aaidijfoaidf","asjdfaoisjf"]
+        return list
+    list=["asdkfja","asoidfjas","asdijfaij"]
+    return list
+
+def findEp(num,mode):
+    if mode==0:
+        list=["happy","sad","angry","aaidijfoaidf","asjdfaoisjf"]
+        return list
+    list=["asdkfja","asoidfjas","asdijfaij"]
+    return list
+
+def findType(type):
+    if type==0:
+        list=["happy","sad","angry","aaidijfoaidf","asjdfaoisjf"]
+        return list
+    list=["asdkfja","asoidfjas","asdijfaij"]
+    return list
+
+def findRand(num):
+    return "hi"
+
 if __name__ == "__main__":
     app.debug = True
-    anime.create()
+    #anime.create()
     app.run()
