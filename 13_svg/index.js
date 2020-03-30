@@ -11,10 +11,20 @@ var change = function(num) {
   x=Math.random()*600;
   y=Math.random()*600;
   if(pic.children[num].getAttribute("fill")=="cyan"){
-    pic.children[num].setAttribute("cx",x);
-    pic.children[num].setAttribute("cy",y);
-    pic.children[num].setAttribute("stroke","blue");
-    pic.children[num].setAttribute("fill","blue");
+    for (var i = num+1; i < pic.children.length; i++) {
+      pic.children[i].setAttribute("id",pic.children[i].getAttribute("id")-1);
+      pic.children[i].setAttribute("onmousedown","change("+pic.children[i].getAttribute("id")+")");
+    }
+    pic.removeChild(pic.children[num])
+    var circ= document.createElementNS("http://www.w3.org/2000/svg","circle");
+    circ.setAttribute("cx",x);
+    circ.setAttribute("cy",y);
+    circ.setAttribute("r",25);
+    circ.setAttribute("fill","blue");
+    circ.setAttribute("id",count-1);
+    circ.setAttribute("stroke","blue");
+    circ.setAttribute("onmousedown","change("+circ.getAttribute("id")+")");
+    pic.appendChild(circ);
   }else{
     pic.children[num].setAttribute("stroke","cyan");
     pic.children[num].setAttribute("fill","cyan");
