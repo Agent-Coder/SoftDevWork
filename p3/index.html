@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <title>Phone Gap</title>
+</head>
+
+<body>
+  <div id="top">
+  <h1><b>PhoneGap TEDxSoftDev</b></h1>
+
+  <p style="font-family: 'courier';"><b>Amanda Zheng and Yifan Wang (Team Chao Fun)</b></p>
+
+</div>
+<div id="bot">
+  <h3>What is PhoneGap and why should we use it?</h3>
+
+  <ul>
+    <li>Open-source cross-platform Mobile Application development framework</li>
+    <li>Better access to native APIs</li>
+    <li>Mostly free</li>
+    <li>Large community base</li>
+    <li>Flexibility using web tech, css, html,  javascript</li>
+    <li>Robust backend support</li>
+    <li>UI libraries for improving user interface</li>
+    <li>Easy to work plugins</li>
+  </ul>
+
+  <h3>Brief History</h3>
+
+  <ul>
+    <li>PhoneGap owned by Nitobi Software </li>
+    <li>2011: Adobe purchased Nitobi Software and named it PhoneGap</li>
+    <li>Later releases an open source version of it to Apache</li>
+    <li>Renamed it Apache Cordova</li>
+  </ul>
+
+  <h3>Some Examples</h3>
+
+  <p>My Heart Camera: Photo editing application that allows the users to decorate the image bo
+  adding stickers, making collages, etc.</p>
+
+  &emsp; &emsp; &emsp;
+  <img src="https://phonegap.com/app/uploads/v2/2013-06-24-my-heart-camera.png" height="100" width="100">
+  <br><br>
+
+  <p>Sworkit: An application that provides resources and helps users manage their workouts.</p>
+
+  &emsp; &emsp; &emsp;
+  <img src="https://phonegap.com/app/uploads/v2/4fc4bff54b9a1phonegap.jpg" height="100" width="100" style="border:1px solid black">
+  <br><br>
+
+  <p>TripCase: An application that helps users keep track of everything in their travels, from flights to itineraries.</p>
+
+  &emsp; &emsp; &emsp;
+  <img src="https://phonegap.com/app/uploads/v2/tripcase.png" height="100" width="100">
+  <br><br>
+
+  <h3>Warnings</h3>
+
+  <ul>
+    <li>The mobile app can't be found on apple (due to contract issues), and you can't publish your games on apple unless you have a certification.</li>
+    <li>Installation and connection problems with your mobile app and the desktop app is very common. Your app may not load on your phone if your using desktop app to make you app. Also, desktop app may not load your app either</li>
+    <li>There is also problems with downloading the desktop app (which is why we recommend CLI). There is no desktop app for Ubuntu/Linux and for windows, you have to find a special beta-zipfile because the other files for downloading the app results in loading screen that never loads anything.</li>
+    <li>Even if you are using the CLI to make you app, it still requires you to download Node.js.</li>
+    <li>This software is very outdated because on PhoneGap QAF posts the latest entry was from 2018. Moreover, with the rising popularity of Ionic and Flutter, less and less people use PhoneGap</li>
+    <li>Based on the languages you can use (html, javascript, and css) PhoneGap is not all that good for gaming apps.</li>
+    <li>You will need libraries for framework</li>
+    <li>There are a few feature complications. For example, the a lot of google fonts don't work if you just enter them into the style tag. You would have to go through the additional step of downloading them.</li>
+  </ul>
+
+  <h1>How to build a software using PhoneGap?</h1>
+
+  <h3>Installing CLI</h3>
+
+  <p>Windows:</p>
+  <pre> npm install -g phonegap@latest </pre>
+  <p>Mac/Linux:</p>
+  <pre> sudo npm install -g phonegap@latest </pre>
+
+  <h3>Installing PhoneGap Desktop App</h3>
+  <p>Go to the <a href="http://docs.phonegap.com/getting-started/1-install-phonegap/desktop/">PhoneGap official website step one</a>
+  and download the version of the desktop app corresponding to your device.<Br>
+
+  *<u>Note:</u> The desktop app is an alternative to the CLI method. You do not need to do both.</li>
+  </p>
+
+  &emsp; &emsp; &emsp;
+  <img src="img/desktopapp.png"> &emsp;
+  <img src="img/desktop1.PNG">
+
+  <h3>Important CLI commands</h3>
+  <p>Here is a list of the important CLI commands.</p>
+  &emsp; &emsp; &emsp;
+  <img src="img/clicommands.PNG"><br><br>
+
+  <P>The main commands you need to know to create your app is <b>create</b> and <b>serve</b>.
+  Create creates the files that you need for your app and serve runs it so you can see the results of your code.</P>
+
+  <h3>Creating a New App (CLI Version)</h3>
+
+  <p>To create a new app and run it on your local machine, follow these commands:</p>
+  <pre>
+    phonegap create &lt;appName&gt;
+    cd &lt;appName&gt;
+    phonegap serve
+  </pre>
+
+  <p>Windows:</p>
+  &emsp; &emsp; &emsp; <img src="img/cli1.PNG" height="250" width="375">
+  <p>Mac/Linux:</p>
+  &emsp; &emsp; &emsp; <img src="img/cli2.PNG" height="125" width="375"><br><br>
+
+  <h3>Creating a New App (Desktop App Version)</h3>
+
+  <p>To create a new app, open the desktop app and click the + symbol on the top left corner then select a template. We recommend choosing "Hello World"
+  because it is the simplest.</p>
+  &emsp;
+  <img src="http://docs.phonegap.com/images/desktop-app-plus.png" height="400" width="300"> &emsp;
+  <img src="http://docs.phonegap.com/images/templates-list.png" height="400" width="300">
+
+  <p>Enter a path you wish to create the app in and name it. Then click "create project".</p>
+  &emsp;
+  <img src="http://docs.phonegap.com/images/desktop-app-create-info.png" height="400" width="300">
+
+  <p>Now run the project on your local machine by clicking the green arrow. The address displayed at the bottom is the server address for the project.</p>
+  &emsp;
+  <img src="http://docs.phonegap.com/images/desktop-app-create.png" height="400" width="300">
+
+  <h3>Coding on New App</h3>
+
+  <p>Coding your app is pretty easy. To make your app, you just have to change the appropriate files. First, let's look at a tree diagram of the relevant files created from the create command.</p>
+  &emsp; &emsp; &emsp;
+  <img src="img/app4.PNG">
+
+  <p>Based on this diagram, you can easily see that all your html goes into index.html, css goes into the index.css and all javascript goes into the index.js.
+  The other files have their functionalities, but coding your app stays in mainly these three files. If you enter each of the three files, you see the template code that renders this image.</p>
+
+  <p>Now insert your code into the three files like so:</p>
+  &emsp;
+  <img src="img/html.PNG" height="400" width="400"> &emsp;
+  <img src="img/Css.PNG" height="400" width="300"> &emsp;
+  <img src="img/js.PNG" height="300" width="400"><br><br>
+
+  <h3>Rendering App</h3>
+  <p>To connect your project to your phone, install the PhoneGap Developer app and open it. It should lead you to a page that asks for the server address.
+  Enter the server address from last step and click "connect". If it connected successfully, your phone should display "DEVICE IS READY" as show below.</p>
+  &emsp;
+  <img src="http://docs.phonegap.com/images/dev-app-enter-add.png" height="400" width="225"> &emsp;
+  <img src="http://docs.phonegap.com/images/dev-app-preview.jpg" height="400" width="225"><br><br>
+
+  <p>Similarly, this should be displayed on the page that the server address leads to on your computer if you didn't touch the templates.</p>
+  &emsp;
+  <img src="img/app6.PNG"><br><br>
+
+
+  <h3>Compiling and Launching</h3>
+
+  <p>To launch your app, you need to go the <a href="https://build.phonegap.com/">phonegap build website</a> and make a free account. Click the "+ new app" button
+  and it will ask you for a linke to your github repo:<p>
+  &emsp; &emsp; &emsp;
+  <img src="img/app7.PNG">
+
+  <p>After you enter all the information, you should see a page like this:<p>
+  &emsp; &emsp; &emsp;
+  <img src="img/Compile.PNG">
+
+  <p>With the QR code, non-apple phones can download you app! For publishing your apps to say the playstore or apple store, this will require extra steps and
+  might require certification.</p>
+
+  <h3>Mobile Downloading</h3>
+
+  <p>To download the app, scan the QR code with your phone's camera. You may see some warnings like this:</p>
+  &emsp; &emsp; &emsp;
+  <img src="img/download.PNG"><br><br>
+  <p>Press "install anyway" and this confirmation should pop up:</p>
+  &emsp; &emsp; &emsp;
+  <img src="img/install.PNG"><br><br>
+  <p>Once you hit install, you will have downloaded the app!</p>
+  &emsp; &emsp; &emsp;
+  <img src="img/screen.PNG"><br><br>
+
+  <h1>Additional Information</h1>
+  <p>For additional information about Phone Gap, consult the <a href="http://docs.phonegap.com/">official documentation</a>.</p>
+</div>
+</body>
+</html>
