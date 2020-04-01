@@ -1,0 +1,36 @@
+Notes
+//Jackie Lin and Amanda Zheng (Team DJAJ)
+//SoftDev1 pd1
+//K#15 -- Capture Bubble Toil Trouble
+//2020-04-02
+
+Sample 1
+Expected:
+- When clicking on a table cell, an alert should pop up with the character names
+Reality:
+- Works as expected
+
+Sample 2
+Expected:
+- Shows inner HTML in following order: table, tr, td
+Reality:
+- Actual order of alerts: td, tr, table
+
+Sample 3
+Expected:
+- Because the useCapture parameter is set to true, we think that the alert will show up in the following order: table, tr, td
+- When we uncomment e.stopPropagation(), it will stop the propagation from table down to td, and only the table alert will pop up
+Reality:
+- Actual order of alerts: table, td, tr (SURPRISE: why was this the case?)
+  - perhaps because both td and tr are still on bubble mode, they will run in their set order, even though table is on capture mode
+- e.stopPropagation() works as expected
+
+Sample 4
+Expected:
+- because the useCapture parameter has been set to true for all of them, we think that the alert will show up in this order: table, tr, td
+- the order in which the event listeners are added should not matter
+- if e.stopPropagation() is uncommented, only the table alert should pop up
+Reality:
+- order of alerts is as expected
+- the order in which event listeners are added do not matter
+- e.stopPropagation() works as expected 
