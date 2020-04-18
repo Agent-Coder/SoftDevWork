@@ -72,7 +72,7 @@ uk=uk[::-1]
 us=us[::-1]
 @app.route("/")
 def root():
-    return render_template("index.html")
+    return render_template("index.html",canada=ca, china=ca, france=fr, germany =ge, iran = ir, italy=it, korea = sk, spain =sp, uk=uk, us=us)
 
 if __name__ == "__main__":
     app.debug = True

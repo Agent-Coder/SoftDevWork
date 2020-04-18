@@ -18,11 +18,25 @@ K18 -- Come Up For Air
 
     <body>
         <h1>New Cases of Covid-19 Worldwide Date: February 1 2020<h1>
-        <button>Render</button>
+        <button onclick="">Render</button>
         <button>Transition</button>
         <div class="chart"></div>
-        <script src="index.js"></script>
-        <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+        var canada = {{canada}}
+        var china = {{china}}
+        var france = {{france}}
+        var germany = {{germany}}
+        var iran = {{iran}}
+        var italy = {{italy}}
+        var korea = {{korea}}
+        var spain = {{spain}}
+        var uk = {{uk}}
+        var us = {{us}}
+      </script>
+        <script src="{{ url_for('static', filename='index.js')}}"></script>
+        <script src="http://d3js.org/d3.v5.min.js" charset="utf-8">
+      </script>
+
     </body>
 
 </html>
