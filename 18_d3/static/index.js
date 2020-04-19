@@ -5,7 +5,6 @@ var data =  [{"country":"Canada","cases":canada[0]},
 {"country":"Iran","cases":iran[0]},{"country":"Italy","cases":italy[0]},
 {"country":"Korea","cases":korea[0]},{"country":"Spain","cases":spain[0]}
 ,{"country":"United Kingdom","cases":uk[0]},{"country":"United States","cases":us[0]}]
-
 var margin = {top:10, right:10, bottom:90, left:10};
 //defining the margin amounts of the chart
 var width = 960 - margin.left - margin.right;
@@ -86,24 +85,28 @@ var next = function(){
   data[7].cases=spain[count];
   data[8].cases=uk[count];
   data[9].cases=us[count];
-  svgContainer.selectAll(".bar")
-      	.data(data)
-      	.enter()
+  xScale.domain(data.map(function(d) { return d.country; }));
+    //for each bar, maps the labels of x scale based on d.country
+
+  yScale.domain([0, d3.max(data, function(d) { return d.cases+20; })]);
+  svgContainer.selectAll("rect")
         .transition()
-        .duration(3000)
-        .delay(function (d, index) { return index * 10 })
-        .attr('width', function (d) {
-          return d.cases;
-        });
-        svgContainer.selectAll(".text")
-              .data(data)
-              .enter()
-            	.append("text")
-             	.attr("class","label")
-             	.attr("x", (function(d) { return xScale(d.country) + xScale.bandwidth() / 2 ; }  ))
-             	.attr("y", function(d) { return yScale(d.cases) - 30; })
-              .attr("dy", ".75em")
-            	.text(function(d) { return d.cases; });
+        .duration(1000)
+        .attr("y", function(d) { return yScale(d.cases); })
+        .attr("height", function(d) { return height - yScale(d.cases); });
+
+  svgContainer.selectAll(".label")
+        .transition()
+        .duration(1000)
+        .tween( 'text', function(d) {
+          var currentValue = this.textContent || "0";
+          console.log(this.textContent)
+          var interpolator = d3.interpolateRound( currentValue, d.cases);
+          return function( t ) {
+            this.textContent = interpolator( t );
+          };})
+        .attr("y", function(d) { return yScale(d.cases) - 30; })
+        //.attr("x", (function(d) { return xScale(d.country) + xScale.bandwidth() / 2 ; }  ));
 }
 var render = document.getElementById("render");
 render.addEventListener('click',show)
