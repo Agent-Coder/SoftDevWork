@@ -24,13 +24,41 @@ K18 -- Come Up For Air
       margin-bottom: 5px;
       margin-left: 10px;
       color: white;
+      display: none;
       }
+  .axis path, .axis line {
+    fill: none;
+    stroke: #fff;
+  }
+.axis text {
+  	font-size: 13px;
+  }
+.bar {
+    fill: #8CD3DD;
+  }
+.bar:hover {
+    fill: #F56C4E;
+  }
+svg text.label {
+  fill:black;
+  font: 15px;
+  font-weight: 400;
+  text-anchor: middle;
+}
+#chartID {
+  display: none;
+	min-width: 531px;
+}
+#transition{
+  display:none;
+}
     </style>
     <body>
         <h1>New Cases of Covid-19 Worldwide Date: February 1 2020<h1>
-        <div class="chart"></div>
-        <button onclick="">Render</button>
-        <button>Transition</button>
+        <div id="chartID"></div>
+        <br>
+        <button id="render">Render</button>
+        <button id="transition">Transition</button>
         <script type="text/javascript">
         var canada = {{canada}}
         var china = {{china}}

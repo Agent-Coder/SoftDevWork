@@ -1,22 +1,111 @@
-count=0
-//var data =  [{"country":"Canada","cases":canada[0]},
-//{"country":"China","cases":china[0]},{"country":"France","cases":france[0]},
-//{"country":"Gernmany","cases":germany[0]},
-//{"country":"Iran","cases":iran[0]},{"country":"Italy","cases":italy[0]},
-//{"country":"Korea","cases":korea[0]},{"country":"Spain","cases":spain[0]}
-//,{"country":"United Kingdom","cases":uk[0]},{"country":"United States","cases":us[0]}]
-   //Select your chart.
-var data=[canada[0],china[0],france[0],germany[0],iran[0],italy[0],korea[0],spain[0],uk[0],us[0]]
-var chart = d3.select(".chart");
- //Prepare for data join.
-var bar = chart.selectAll("div");
-  // (this defines selection to which you will join data)
-   //Join your data.
-var barUpdate = bar.data(data);
-   //Instantiate new elements by appending to the “enter selection.”
-var barEnter = barUpdate.enter().append("div");
-console.log(5)
- //Set width of each bar proportional to its data value.
-barEnter.style("width", function(d) {return d * 10 + "px"; });
-   //Label each bar.
-barEnter.text(function(d) { return d; });
+var count=0
+var data =  [{"country":"Canada","cases":canada[0]},
+{"country":"China","cases":china[0]},{"country":"France","cases":france[0]},
+{"country":"Gernmany","cases":germany[0]},
+{"country":"Iran","cases":iran[0]},{"country":"Italy","cases":italy[0]},
+{"country":"Korea","cases":korea[0]},{"country":"Spain","cases":spain[0]}
+,{"country":"United Kingdom","cases":uk[0]},{"country":"United States","cases":us[0]}]
+
+var margin = {top:10, right:10, bottom:90, left:10};
+//defining the margin amounts of the chart
+var width = 960 - margin.left - margin.right;
+//the total width of the bar graph
+var height = 500 - margin.top - margin.bottom;
+//the total height of the bar graph
+var xScale = d3.scaleBand()
+  .range([0, width])
+  .paddingInner(0.05)
+//sets the number of pixels for the xscale
+//adds padding
+var yScale = d3.scaleLinear()
+      .range([height, 0]);
+//sets the number of pixels for the yscale
+
+var xAxis = d3.axisBottom(xScale)
+//positions the x axis on the bottom
+var yAxis = d3.axisLeft(yScale);
+//positions the y axis on the left
+var svgContainer = d3.select("#chartID").append("svg")
+    .attr("width", width+margin.left + margin.right)
+    .attr("height",height+margin.top + margin.bottom)
+    .append("g").attr("class", "container")
+    .attr("transform", "translate("+ margin.left +","+ margin.top +")");
+
+xScale.domain(data.map(function(d) { return d.country; }));
+  //for each bar, maps the labels of x scale based on d.country
+
+yScale.domain([0, d3.max(data, function(d) { return d.cases+1; })]);
+  //sets the height of yscale
+
+
+  //xAxis. To put on the top, swap "(height)" with "-5" in the translate() statement. Then you'll have to change the margins above and the x,y attributes in the svgContainer.select('.x.axis') statement inside resize() below.
+var xAxis_g = svgContainer.append("g")
+  		.attr("class", "x axis")
+  		.attr("transform", "translate(0," + (height) + ")")
+  		.call(xAxis)
+  		.selectAll("text");
+    //allows text for the xaxis
+
+svgContainer.selectAll(".bar")
+    	.data(data)
+    	.enter()
+    	.append("rect")
+    	.attr("class", "bar")
+    	.attr("x", function(d) { return xScale(d.country); })
+    	.attr("width", xScale.bandwidth())
+    	.attr("y", function(d) { return yScale(d.cases); })
+    	.attr("height", function(d) { return height - yScale(d.cases); });
+
+svgContainer.selectAll(".text")
+      .data(data)
+      .enter()
+    	.append("text")
+     	.attr("class","label")
+     	.attr("x", (function(d) { return xScale(d.country) + xScale.bandwidth() / 2 ; }  ))
+     	.attr("y", function(d) { return yScale(d.cases) - 30; })
+      .attr("dy", ".75em")
+    	.text(function(d) { return d.cases; });
+
+
+var show = function(){
+  var chart = document.getElementById("chartID");
+  chart.style.display="inline";
+  var transition = document.getElementById("transition");
+  transition.style.display="inline";
+}
+
+var next = function(){
+  count+=1;
+  data[0].cases=canada[count];
+  data[1].cases=china[count];
+  data[2].cases=france[count];
+  data[3].cases=germany[count];
+  data[4].cases=iran[count];
+  data[5].cases=italy[count];
+  data[6].cases=korea[count];
+  data[7].cases=spain[count];
+  data[8].cases=uk[count];
+  data[9].cases=us[count];
+  svgContainer.selectAll(".bar")
+      	.data(data)
+      	.enter()
+        .transition()
+        .duration(3000)
+        .delay(function (d, index) { return index * 10 })
+        .attr('width', function (d) {
+          return d.cases;
+        });
+        svgContainer.selectAll(".text")
+              .data(data)
+              .enter()
+            	.append("text")
+             	.attr("class","label")
+             	.attr("x", (function(d) { return xScale(d.country) + xScale.bandwidth() / 2 ; }  ))
+             	.attr("y", function(d) { return yScale(d.cases) - 30; })
+              .attr("dy", ".75em")
+            	.text(function(d) { return d.cases; });
+}
+var render = document.getElementById("render");
+render.addEventListener('click',show)
+var transition = document.getElementById("transition");
+transition.addEventListener('click',next)
