@@ -64,7 +64,12 @@ K18 -- Come Up For Air
     #date{
       display: none;
     }
-
+    #continue{
+      display: none;
+    }
+    #stop{
+      display: none;
+    }
   </style>
   <body>
     <div class="container">
@@ -75,6 +80,8 @@ K18 -- Come Up For Air
         <br>
         <button type="button" class="btn btn-info" id="render">Render</button>
         <button type="button" class="btn btn-info" id="transition">Transition</button>
+        <button type="button" class="btn btn-info" onclick="run()" id="continue">Continuous</button>
+        <button type="button" class="btn btn-info" onclick="stop()" id="stop">Stop</button>
         <script type="text/javascript">
           var canada = {{canada}}
           var china = {{china}}
