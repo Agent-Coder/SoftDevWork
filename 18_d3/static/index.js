@@ -71,10 +71,12 @@ var show = function(){
   chart.style.display="inline";
   var transition = document.getElementById("transition");
   transition.style.display="inline";
+  var date = document.getElementById("date");
+  date.style.display="inline";
 }
 
 var next = function(){
-  count+=1;
+  count = (count+1) % 78;
   data[0].cases=canada[count];
   data[1].cases=china[count];
   data[2].cases=france[count];
@@ -85,6 +87,21 @@ var next = function(){
   data[7].cases=spain[count];
   data[8].cases=uk[count];
   data[9].cases=us[count];
+
+  var date = document.getElementById("date");
+  var dateOfMonth;
+  console.log(count)
+  if (count < 29) {
+    dateOfMonth = count + 1;
+    date.innerHTML = "Date: February " + dateOfMonth.toString() + ", 2020";
+  } else if (count < 60) {
+    dateOfMonth = count - 28;
+    date.innerHTML = "Date: March " + dateOfMonth.toString() + ", 2020";
+  } else {
+    dateOfMonth = count - 59;
+    date.innerHTML = "Date: April " + dateOfMonth.toString() + ", 2020";
+  }
+
   xScale.domain(data.map(function(d) { return d.country; }));
     //for each bar, maps the labels of x scale based on d.country
 
@@ -100,7 +117,6 @@ var next = function(){
         .duration(1000)
         .tween( 'text', function(d) {
           var currentValue = this.textContent || "0";
-          console.log(this.textContent)
           var interpolator = d3.interpolateRound( currentValue, d.cases);
           return function( t ) {
             this.textContent = interpolator( t );
